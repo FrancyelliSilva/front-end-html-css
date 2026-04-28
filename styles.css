@@ -54,10 +54,17 @@ li{
 
 /* Itens do cabeçalho */
 
-.menu-cabecalho {
+.menu-cabecalho-desktop {
     align-items: center;
     margin-left: 9%;
 }
+
+.menu-cabecalho-mobile {
+    display: none;
+    align-items: center;
+    margin-left: 9%;
+}
+
 .itens-cabecalho {
     display: flex;
 }
@@ -139,32 +146,27 @@ li{
     background-color: #e6b820;
 }
 
-/* Botão do WhatsApp */
 
-.botao-whatsapp {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #25d366;
-    color: #fff;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    transition: transform 0.2s;
+@media (max-width: 1024px){
+    .container-cabecalho {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-cabecalho-desktop {
+        display: none;
+    }
+
+    .menu-cabecalho-mobile {
+        display: flex;
+    }
+
+    .logo {
+        max-width: 240px;
+        margin-top: 40px;
+        margin-bottom:40px;
+    }
+
+
+
 }
-
-.botao-whatsapp:hover {
-    transform: scale(1.1);
-}
-
-.botao-whatsapp svg {
-    width: 30px;
-    height: 30px;
-}
-
-
