@@ -83,6 +83,23 @@ li{
     margin-left: 13%;
 }
 
+.dropdown-cafes {
+    position: relative;
+}
+
+#lista-cafes {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 10px;
+    z-index: 1000;
+}
+
 /*Seção banner principal*/
 .hero {
     background-image: url('./banner-koji-WIDE.webp');
