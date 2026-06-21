@@ -124,7 +124,7 @@ function mostrarCarrinho() {
   });
 }
 
-//Remover do Carrinho
+//Remove itens do Carrinho
 const listaCarrinho = document.getElementById('lista-carrinho');
 
 listaCarrinho.addEventListener('click', (evento) => {
