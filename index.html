@@ -72,6 +72,7 @@
                         <a class="item-cabecalho" id="link-cafes" href="#">Cafés Quentes</a>
                         <div id="caixa-dropdown">
                             <input type="text" id="campo-busca" placeholder="Buscar café...">
+                            <p id="msg-validacao"></p>
                             <ul id="lista-cafes"></ul>
                         </div>
                     </li>
@@ -89,10 +90,13 @@
                             <i class="fi fi-rr-user"></i>
                         </a>
                     </li>
-                    <li>
-                        <a class="item-cabecalho">
+                    <li class="dropdown-carrinho">
+                        <a class="item-cabecalho" id="link-carrinho" href="#">
                             <i class="fi fi-rr-shopping-cart"></i>
                         </a>
+                        <div id="caixa-carrinho">
+                            <ul id="lista-carrinho"></ul>
+                        </div>
                     </li>
                 </ul>
             </div>          
@@ -106,9 +110,6 @@
             <div class="titulo-hero">Grão Fermentado com técnica japonesa</div>
             <button class=btn>CONHEÇA</button>
         </div>
-    </section>
-    <section class="secao-cafes">
-        <ul id="lista-cafes"></ul>
     </section>
 <script src="script.js"></script>
 </body>

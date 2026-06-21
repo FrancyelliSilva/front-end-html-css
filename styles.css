@@ -89,8 +89,11 @@ li{
 
 .card-cafe{
     display: flex;
-    margin: 6px;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
 }
+
 .card-cafe img {
     height: 70px;
     object-fit: cover;
@@ -117,6 +120,30 @@ li{
 }
 
 #lista-cafes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.dropdown-carrinho {
+    position: relative;
+}
+
+#caixa-carrinho {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #ffcd30;
+    width: 300px;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+#lista-carrinho {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -152,6 +179,34 @@ li{
     margin-bottom: 40px;
     font-family: Recoleta, serif;
     font-weight: 500
+}
+
+.btn-carrinho{
+    background-color: rgb(255, 205, 48);
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    font-family: Barlow, serif;
+    letter-spacing: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer
+}
+
+.btn-carrinho i{
+    pointer-events: none;
+}
+
+.btn-remover{
+    background-color: rgb(255, 205, 48);
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    font-family: Barlow, serif;
+    letter-spacing: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer
 }
 
 .btn{

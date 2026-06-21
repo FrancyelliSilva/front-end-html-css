@@ -1,29 +1,14 @@
-// Lista de café quentes no dropdown
-fetch('https://api.sampleapis.com/coffee/hot') //api
-  .then((resp) => resp.json())
-  .then((data) => {
-    const container = document.getElementById('lista-cafes');
-    data.forEach((cafe) => {
-      container.innerHTML += `
-        <li class="card-cafe">
-          <img src="${cafe.image}" alt="${cafe.title}" onerror="this.parentElement.style.display='none'">
-          <h3>${cafe.title}</h3>
-        </li>
-      `;
-    });
-  })
-  .catch((err) => console.log(err));
-
 const linkCafes = document.getElementById('link-cafes');
-const lista = document.getElementById('caixa-dropdown');
+const caixaDropdown = document.getElementById('caixa-dropdown');
 
-lista.style.display = 'none'; //mantém a lista escondida até clicar no link
+caixaDropdown.style.display = 'none'; //mantém a lista escondida até clicar no link
 
 linkCafes.addEventListener('click', () => {
-   if (lista.style.display === 'none') {
-      lista.style.display = 'block';
+   if (caixaDropdown.style.display === 'none') {
+      caixaDropdown.style.display = 'block';
+      caixaCarrinho.style.display = 'none';
    } else {
-      lista.style.display = 'none';
+      caixaDropdown.style.display = 'none';
    }
 });
 
@@ -38,6 +23,9 @@ function mostrarCafes(cafes){
       <li class="card-cafe">
         <img src="${cafe.image}" alt="${cafe.title}" onerror="this.parentElement.style.display='none'">
         <h3>${cafe.title}</h3>
+        <button class="btn-carrinho" data-id="${cafe.id}">
+          <i class="fi fi-rr-plus"></i>
+        </button>
       </li>
     `;
   });
@@ -54,10 +42,94 @@ fetch('https://api.sampleapis.com/coffee/hot')
   //Busca de Cafés Quentes
   const campoBusca = document.getElementById('campo-busca');
 
+  //Validação do campo de busca
+  const msg = document.getElementById('msg-validacao');
+
   campoBusca.addEventListener('input', () => {
     const texto = campoBusca.value.toLowerCase();
-    const filtrados = CafesQuentes.filter((cafe) => {
-      return cafe.title.toLowerCase().includes(texto);
-    });
-    mostrarCafes(filtrados)
+
+    if (texto.length === 0) {
+      msg.textContent = '';
+      mostrarCafes(CafesQuentes);
+    } else if (texto.length < 3) {
+      msg.textContent = 'Digite pelo menos 3 caracteres';
+    }else {
+      msg.textContent = '';
+      const filtrados = CafesQuentes.filter((cafe) => {
+        return cafe.title.toLowerCase().includes(texto);
+      });
+      mostrarCafes(filtrados)
+    }
   })
+
+//Salvar no carrinho
+const listaCafes = document.getElementById('lista-cafes');
+
+listaCafes.addEventListener('click', (evento) => {
+  if (evento.target.classList.contains('btn-carrinho')) {
+    const id = evento.target.dataset.id;
+
+    const cafe = CafesQuentes.find((c) => c.id == id);
+
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    carrinho.push(cafe);
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    console.log(carrinho);
+  }
+})
+
+//Carrinho
+const linkCarrinho = document.getElementById('link-carrinho');
+const caixaCarrinho = document.getElementById('caixa-carrinho');
+
+caixaCarrinho.style.display = 'none';
+
+linkCarrinho.addEventListener('click', () => {
+  if (caixaCarrinho.style.display === 'none') {
+    caixaCarrinho.style.display = 'block';
+    caixaDropdown.style.display = 'none';
+    mostrarCarrinho();
+  } else {
+    caixaCarrinho.style.display = 'none'
+  }
+});
+
+function mostrarCarrinho() {
+  const container = document.getElementById('lista-carrinho');
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+  container.innerHTML = '';
+  carrinho.forEach((item, indice) => {
+    container.innerHTML += `
+      <li class="item-carrinho card-cafe">
+        <img src="${item.image}" alt="${item.title}">
+        <span>${item.title}</span>
+        <button class="btn-remover" data-indice="${indice}">
+        remover
+        </button>
+      </li>
+    `;
+  });
+}
+
+//Remover do Carrinho
+const listaCarrinho = document.getElementById('lista-carrinho');
+
+listaCarrinho.addEventListener('click', (evento) => {
+  if (evento.target.classList.contains('btn-remover')){
+    const indice = evento.target.dataset.indice;
+
+    const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+    carrinho.splice(indice, 1);
+
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+
+    mostrarCarrinho();
+  }
+});
+
+
+
