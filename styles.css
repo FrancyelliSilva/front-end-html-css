@@ -231,9 +231,6 @@ li{
     font-size: large;
 }
 
-
-
-
 @media (max-width: 1024px){
     .container-cabecalho {
         align-items: center;
