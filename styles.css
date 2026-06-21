@@ -96,7 +96,9 @@ li{
 
 .card-cafe img {
     height: 70px;
+    width: 70px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .card-cafe h3 {
@@ -190,7 +192,8 @@ li{
     letter-spacing: 4px;
     font-size: 14px;
     font-weight: bold;
-    cursor: pointer
+    cursor: pointer;
+    margin-left: auto;
 }
 
 .btn-carrinho i{
@@ -206,7 +209,8 @@ li{
     letter-spacing: 4px;
     font-size: 14px;
     font-weight: bold;
-    cursor: pointer
+    cursor: pointer;
+    margin-left:auto
 }
 
 .btn{
@@ -220,6 +224,11 @@ li{
     letter-spacing: 4px;
     font-size: 14px;
     font-weight: bold
+}
+
+.vazio{
+    font-weight: bold;
+    font-size: large;
 }
 
 
